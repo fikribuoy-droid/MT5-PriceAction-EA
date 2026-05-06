@@ -237,10 +237,15 @@ void CBreakRetest::UpdateSetups(double sr_levels[], bool sr_is_support[], int sr
       if(m_setups[i].state == BS_BREAKOUT)
       {
          // Wait for retest: price returns to level
-         if(MathAbs(curr_close - m_setups[i].level_price) <= tol ||
-            MathAbs(curr_low   - m_setups[i].level_price) <= tol ||
-            MathAbs(curr_high  - m_setups[i].level_price) <= tol)
-         {
+         // For bullish setup (resistance breakout): check if low touches the broken level from above
+         // For bearish setup (support breakout): check if high touches the broken level from below
+         bool retest_detected = false;
+         if(m_setups[i].is_bullish)
+            retest_detected = (MathAbs(curr_low - m_setups[i].level_price) <= tol);
+         else
+            retest_detected = (MathAbs(curr_high - m_setups[i].level_price) <= tol);
+
+         if(retest_detected)
             m_setups[i].state       = BS_RETEST;
             m_setups[i].retest_time = bar_time;
             DrawRetestZone(m_setups[i].level_price, bar_time);

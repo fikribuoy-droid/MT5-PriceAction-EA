@@ -42,7 +42,7 @@ private:
    bool     m_draw_session_lines;
    datetime m_last_draw_time;
 
-   // Convert a datetime to hour in GMT
+   // Extract hour/minute components from a datetime value (caller ensures GMT input)
    int      HourGMT(datetime dt) { return (int)((dt % 86400) / 3600); }
    int      MinuteGMT(datetime dt) { return (int)((dt % 3600) / 60); }
 

@@ -193,7 +193,7 @@ MT5-PriceAction-EA/
 
 ## ⚠️ Disclaimer
 
-> Trading foreign exchange and CFDs involves significant risk and may not be suitable for all investors. Past performance is not indicative of future results. This Expert Advisor is provided for educational and research purposes. **Always test thoroughly on a demo account before risking real funds.** The developer assumes no responsibility for financial losses incurred from using this software.
+> Trading foreign exchange and CFDs involves significant risk and may not be suitable for all investors. Past performance is not indicative of future results. This Expert Advisor is provided for educational and research purposes. **Always test thoroughly on a demo account before risking real funds.** The developer assumes no responsibility for financial losses resulting from the use of this software.
 
 ---
 

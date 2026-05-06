@@ -11,6 +11,9 @@
 //+------------------------------------------------------------------+
 //| CDashboard - Real-time chart dashboard                           |
 //+------------------------------------------------------------------+
+#define DASHBOARD_WIDTH  230
+#define DASHBOARD_HEIGHT 245
+
 class CDashboard
 {
 private:
@@ -153,8 +156,8 @@ void CDashboard::Update(
    int x   = m_x_offset;
    int y_base = m_y_start;
 
-   // Background panel (approximately 220px wide, 220px tall)
-   SetRect(m_prefix + "BG", x - 2, y_base - 5, 230, 240, clrBlack, 65);
+   // Background panel
+   SetRect(m_prefix + "BG", x - 2, y_base - 5, DASHBOARD_WIDTH, DASHBOARD_HEIGHT, clrBlack, 65);
 
    // Title
    SetLabel(m_prefix + "Title", "[ Price Action Master EA ]", x, y_base + (row++) * m_line_height,

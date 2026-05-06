@@ -105,6 +105,17 @@ int      g_tl_update_bars = 0;       // Counter for trendline refresh
 #define EA_MAGIC 123456
 
 //+------------------------------------------------------------------+
+//| Detect the order filling mode supported by this broker/symbol    |
+//+------------------------------------------------------------------+
+ENUM_ORDER_TYPE_FILLING GetBrokerFillingMode(string symbol)
+{
+   long filling_flags = SymbolInfoInteger(symbol, SYMBOL_FILLING_FLAGS);
+   if((filling_flags & ORDER_FILLING_FOK)    != 0) return ORDER_FILLING_FOK;
+   if((filling_flags & ORDER_FILLING_IOC)    != 0) return ORDER_FILLING_IOC;
+   return ORDER_FILLING_RETURN;
+}
+
+//+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
@@ -152,7 +163,9 @@ int OnInit()
    // Configure trade object
    g_trade.SetExpertMagicNumber(EA_MAGIC);
    g_trade.SetDeviationInPoints(20);
-   g_trade.SetTypeFilling(ORDER_FILLING_FOK);
+   // Auto-detect the filling mode supported by this broker
+   ENUM_ORDER_TYPE_FILLING filling = GetBrokerFillingMode(_Symbol);
+   g_trade.SetTypeFilling(filling);
 
    g_initialized = true;
    Print("PriceActionMaster: Initialization complete. Symbol=", _Symbol,
@@ -440,10 +453,10 @@ void ExecuteTrade(ENUM_ORDER_TYPE order_type, double entry_price, double sl_pric
    double bid = SymbolInfoDouble(symbol, SYMBOL_BID);
    double exec_price = (order_type == ORDER_TYPE_BUY) ? ask : bid;
 
-   // Adjust SL/TP by spread for market order
-   // (entry_price is suggestive; we use market price for execution)
+   // Use TP as calculated from the entry signal price (already direction-aware).
+   // For market orders we pass 0 for price (broker fills at best available).
    double adjusted_sl = sl_price;
-   double adjusted_tp = tp_price + (exec_price - entry_price) * direction;
+   double adjusted_tp = tp_price;
 
    Print(StringFormat("PriceActionMaster: Executing %s trade. Strategy=%s  Lots=%.2f  Entry=%.5f  SL=%.5f  TP=%.5f",
          (order_type == ORDER_TYPE_BUY) ? "BUY" : "SELL",

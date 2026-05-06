@@ -422,8 +422,8 @@ void CRiskManager::ManageOpenTrades(void)
                         open - m_break_even_plus_pips * pip;
 
          bool should_update = false;
-         if(type == POSITION_TYPE_BUY  && (sl < be_sl || sl == 0))  should_update = true;
-         if(type == POSITION_TYPE_SELL && (sl > be_sl || sl == 0))   should_update = true;
+         if(type == POSITION_TYPE_BUY  && sl < be_sl)  should_update = true;
+         if(type == POSITION_TYPE_SELL && (sl == 0 || sl > be_sl)) should_update = true;
 
          if(should_update)
          {
@@ -444,7 +444,7 @@ void CRiskManager::ManageOpenTrades(void)
          if(type == POSITION_TYPE_BUY)
          {
             new_sl = current - trail_dist;
-            if(new_sl > sl || sl == 0)
+            if(sl > 0 && new_sl > sl)
             {
                if(m_trade.PositionModify(m_position.Ticket(), new_sl, tp))
                   Print("RiskManager: Trailing stop updated for ticket ", m_position.Ticket(),
@@ -454,7 +454,7 @@ void CRiskManager::ManageOpenTrades(void)
          else // SELL
          {
             new_sl = current + trail_dist;
-            if(new_sl < sl || sl == 0)
+            if(sl > 0 && new_sl < sl)
             {
                if(m_trade.PositionModify(m_position.Ticket(), new_sl, tp))
                   Print("RiskManager: Trailing stop updated for ticket ", m_position.Ticket(),

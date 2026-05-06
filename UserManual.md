@@ -204,10 +204,10 @@ Uptrend Line:                    Downtrend Line:
 ```
 
 **Kriteria Valid Trendline:**
-- Menghubungkan minimal 2 swing point (otomatis ditetapkan ke 3 untuk konfirmasi)
+- Menghubungkan minimal 2 swing point sebagai anchor
 - Uptrend line: swing lows yang semakin naik
 - Downtrend line: swing highs yang semakin turun
-- Minimal 3 kali harga menyentuh/memantul
+- Minimal **3 kali** harga menyentuh/memantul (divalidasi secara otomatis)
 
 **Entry:**
 - Uptrend: Buy ketika harga menyentuh uptrend line + candle bullish terbentuk

@@ -133,7 +133,7 @@ bool CSupportResistance::IsSwingHigh(int bar, int range)
    for(int i = 1; i <= range; i++)
    {
       if(iHigh(m_symbol, m_timeframe, bar + i) >= high) return false;
-      if(iHigh(m_symbol, m_timeframe, bar - i) >= high) return false;
+      if(bar - i >= 0 && iHigh(m_symbol, m_timeframe, bar - i) >= high) return false;
    }
    return true;
 }
@@ -147,7 +147,7 @@ bool CSupportResistance::IsSwingLow(int bar, int range)
    for(int i = 1; i <= range; i++)
    {
       if(iLow(m_symbol, m_timeframe, bar + i) <= low) return false;
-      if(iLow(m_symbol, m_timeframe, bar - i) <= low) return false;
+      if(bar - i >= 0 && iLow(m_symbol, m_timeframe, bar - i) <= low) return false;
    }
    return true;
 }
