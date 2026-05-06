@@ -35,7 +35,7 @@ All entries require **multi-timeframe confirmation** (H4 trend bias + H1 entry s
 ## Features
 
 ### 📊 Trading Strategies
-- **Pin Bar Detection** — Identifies bullish (long lower wick) and bearish (long upper wick) pin bars at S/R levels with customisable wick/body ratio and body-size thresholds.
+- **Pin Bar Detection** — Identifies bullish (long lower wick) and bearish (long upper wick) pin bars at S/R levels with customizable wick/body ratio and body-size thresholds.
 - **Break & Retest** — Detects clean S/R breakouts and waits for a role-reversal retest before entering in the direction of the break.
 - **Trendline Bounce** — Draws uptrend and downtrend lines from swing highs/lows; enters on bounce confirmation with a minimum of 3 trendline touches.
 

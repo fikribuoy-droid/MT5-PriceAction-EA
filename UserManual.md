@@ -264,7 +264,7 @@ EA secara otomatis menggambar trendline dari swing high dan swing low, kemudian 
 
 **Kondisi Validitas Trendline:**
 - Minimal **3 titik sentuhan** untuk dianggap valid
-- Semakin banyak sentuhan = semakin kuat trenlinenya
+- Semakin banyak sentuhan = semakin kuat trendlinenya
 
 **Kondisi Entry:**
 - ✅ Trendline valid (minimal 3 touches)
